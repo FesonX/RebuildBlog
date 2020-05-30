@@ -55,8 +55,7 @@ class UserAuth(BaseModel, UserMixin):
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return '<{name} {id} {username} {email}>'.format(name=self.__name__, id=self.id, username=self.username,
-                                                         email=self.email)
+        return '<UserAuth {id} {username} {email}>'.format(id=self.id, username=self.username, email=self.email)
 
 
 class UserInfo(BaseModel):
@@ -73,8 +72,7 @@ class UserInfo(BaseModel):
     intro = db.Column(db.String(128), server_default='')
 
     def __repr__(self):
-        return '<{name} {id} {username} {country}>'.format(name=self.__name__, id=self.id, username=self.username,
-                                                           country=self.country)
+        return '<UserInfo {id} {username} {country}>'.format(id=self.id, username=self.username, country=self.country)
 
 
 class Article(BaseModel):
@@ -92,8 +90,7 @@ class Article(BaseModel):
     section = db.Column(db.String(64), server_default='')
 
     def __repr__(self):
-        return '<{name} {id} {username} {title}>'.format(name=self.__name__, id=self.id, username=self.username,
-                                                         title=self.title)
+        return '<Article {id} {username} {title}>'.format(id=self.id, username=self.username, title=self.title)
 
 
 class ArticleTag(BaseModel):
@@ -108,8 +105,7 @@ class ArticleTag(BaseModel):
     title = db.Column(db.String(128), nullable=False, server_default='')
 
     def __repr__(self):
-        return '<{name} {id} {tag} {username}>'.format(name=self.__name__, id=self.id, tag=self.tag,
-                                                       username=self.username)
+        return '<ArticleTag {id} {tag} {username}>'.format(id=self.id, tag=self.tag, username=self.username)
 
 
 class ArticleComment(BaseModel):
@@ -124,6 +120,4 @@ class ArticleComment(BaseModel):
     country_code = db.Column(db.String(8), server_default='')
 
     def __repr__(self):
-        return '<{name} {id} {username} {body}>'.format(name=self.__name__, id=self.id, username=self.username,
-                                                        body=self.body[:16])
-
+        return '<ArticleComment {id} {username} {body}>'.format(id=self.id, username=self.username, body=self.body[:16])
