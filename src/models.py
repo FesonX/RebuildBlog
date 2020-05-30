@@ -44,9 +44,9 @@ class UserAuth(BaseModel, UserMixin):
         db.UniqueConstraint('username'),
         COMMON_TABLE_SETTINGS
     )
-    password_hash = db.Column(db.String(128), nullable=False)
-    email = db.Column(db.String(128), nullable=False)
-    username = db.Column(db.String(64), nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False, server_default='')
+    email = db.Column(db.String(128), nullable=False, server_default='')
+    username = db.Column(db.String(64), nullable=False, server_default='')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -66,7 +66,7 @@ class UserInfo(BaseModel):
         db.UniqueConstraint('username'),
         COMMON_TABLE_SETTINGS
     )
-    username = db.Column(db.String(64), nullable=False)
+    username = db.Column(db.String(64), nullable=False, server_default='')
     country = db.Column(db.String(8), server_default='')
     city = db.Column(db.String(32), server_default='')
     avatar = db.Column(db.String(128), server_default='')
@@ -85,10 +85,10 @@ class Article(BaseModel):
         db.Index('ix_article_section', 'section'),
         COMMON_TABLE_SETTINGS
     )
-    username = db.Column(db.String(64), nullable=False)
-    title = db.Column(db.String(128), nullable=False)
-    body = db.Column(db.TEXT, nullable=False)
-    slug = db.Column(db.String(256), nullable=False)
+    username = db.Column(db.String(64), nullable=False, server_default='')
+    title = db.Column(db.String(128), nullable=False, server_default='')
+    body = db.Column(db.TEXT)
+    slug = db.Column(db.String(256), nullable=False, server_default='')
     section = db.Column(db.String(64), server_default='')
 
     def __repr__(self):
