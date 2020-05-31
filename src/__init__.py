@@ -17,7 +17,7 @@ from config import BASE_DIR
 
 def create_app() -> Flask:
     flask_app = Flask(__name__, template_folder=BASE_DIR + '/src/templates',
-                      static_folder=BASE_DIR + '/src/static')
+                      static_folder=BASE_DIR + '/src/static', static_url_path='')
     flask_app.config.from_pyfile(BASE_DIR + '/config.py')
     instance_folder = flask_app.instance_path or BASE_DIR + '/instance'
     if path.isdir(instance_folder):
