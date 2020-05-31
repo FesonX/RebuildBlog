@@ -9,11 +9,5 @@
 """
 from src import app
 
-
-@app.route('/')
-def test():
-    return "hello world"
-
-
 if __name__ == '__main__':
     app.run(debug=True)

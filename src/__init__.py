@@ -32,5 +32,12 @@ def create_app() -> Flask:
     return flask_app
 
 
+def init_route():
+    # import the route u defined here
+    import src.views
+
+
 app = create_app()
 db = SQLAlchemy(app)
+# should be init after app created.
+init_route()

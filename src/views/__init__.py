@@ -7,3 +7,4 @@
 @site: github.com/FesonX 
 @software: PyCharm 
 """
+from .common_views import index
