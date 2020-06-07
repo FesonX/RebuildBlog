@@ -88,6 +88,7 @@ class Article(BaseModel):
     body = db.Column(db.TEXT)
     slug = db.Column(db.String(256), nullable=False, server_default='')
     section = db.Column(db.String(64), server_default='')
+    summary = db.Column(db.String(64), server_default='')
 
     def __repr__(self):
         return '<Article {id} {username} {title}>'.format(id=self.id, username=self.username, title=self.title)
