@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/css/editormd.min.css"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <form class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="title">文章标题</label>
+                    <input type="text" class="form-control" id="title" aria-describedby="titleHelp">
+                    <small id="titleHelp" class="form-text text-muted">Must input, max for 128</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="author">作者</label>
+                    <input type="text" id="author" class="form-control" aria-describedby="authorHelp">
+                    <small id="authorHelp" class="form-text text-muted">Default is your login username</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="column">专栏</label>
+                    <input type="text" id="column" class="form-control" aria-describedby="columnHelp">
+                    <small id="columnHelp" class="form-text text-muted">Column name</small>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div id="editor-body"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="summary">摘要</label>
+                    <textarea class="form-control" rows="4" id="summary"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" onclick="postArticle()" value="提交">
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <!--<script src="{{cdn_domain}}/markdown-it/11.0.0/markdown-it.min.js"></script>-->
+    <script src="/js/plugins/editormd.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            let editor = editormd("editor-body", {
+                width: "100%",
+                height: 640,
+                path: "/js/lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+            });
+        });
+
+
+        function postArticle() {
+            let articleBody = $(".editormd-markdown-textarea");
+            let titleInput = $("#title");
+            let authorInput = $("#author");
+            let summaryInput = $("#summary");
+            let columnInput = $("#column");
+            let article = articleBody.val();
+            let title = titleInput.val();
+            let author = authorInput.val();
+            let summary = summaryInput.val();
+            let column = columnInput.val();
+
+            $.ajax({
+                url: "/articles",
+                type: "POST",
+                data: {"title": title, "body": article, "author": author, "summary": summary, "column": column},
+                success: function (data) {
+                    if (data.code === 200)
+                        toastr.success("发布成功");
+                },
+                error: function (data) {
+                    toastr.error("发布失败")
+                }
+            });
+        };
+    </script>
+{% endblock %}
