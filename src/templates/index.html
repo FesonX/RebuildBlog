@@ -3,10 +3,10 @@
 {% block content %}
 <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
-        <h1 class="display-4">Title of a longer featured blog post文章标题</h1>
-        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
+        <h1 class="display-4 post-title">Title of a longer featured blog post文章标题</h1>
+        <p class="lead my-3 post-summary">Multiple lines of text that form the lede, informing new readers quickly and
             efficiently about what’s most interesting in this post’s contents.文章摘要-自动生成</p>
-        <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">继续阅读...</a></p>
+        <p class="lead mb-0"><a href="#" class="text-white font-weight-bold post-link">继续阅读...</a></p>
     </div>
 </div>
 
@@ -15,11 +15,11 @@
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
                 <strong class="d-inline-block mb-2 text-primary">专栏名称</strong>
-                <h3 class="mb-0">Post Title 文章标题</h3>
-                <div class="mb-1 text-muted">Nov 12</div>
-                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                <h3 class="mb-0 post-title">Post Title 文章标题</h3>
+                <div class="mb-1 text-muted post-date">Nov 12</div>
+                <p class="card-text mb-auto post-summary">This is a wider card with supporting text below as a natural lead-in to
                     additional content.</p>
-                <a href="#" class="stretched-link">Continue reading</a>
+                <a href="#" class="stretched-link post-link">Continue reading</a>
             </div>
             <div class="col-auto d-none d-lg-block">
                 <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -35,11 +35,11 @@
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
                 <strong class="d-inline-block mb-2 text-success">专栏名称</strong>
-                <h3 class="mb-0">Post title 文章标题</h3>
-                <div class="mb-1 text-muted">Nov 11</div>
-                <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                <h3 class="mb-0 post-title">Post title 文章标题</h3>
+                <div class="mb-1 text-muted post-date">Nov 11</div>
+                <p class="mb-auto post-summary">This is a wider card with supporting text below as a natural lead-in to
                     additional content.</p>
-                <a href="#" class="stretched-link">Continue reading</a>
+                <a href="#" class="stretched-link post-link">Continue reading</a>
             </div>
             <div class="col-auto d-none d-lg-block">
                 <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -52,4 +52,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+
 {% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/css/editormd.min.css"/>
+    <link rel="stylesheet" href="{{ cdn_domain }}/highlight.js/10.1.1/styles/default.min.css">
+    <link rel="stylesheet" href="{{ cdn_domain }}/highlight.js/10.1.1/styles/dark.min.css">
+
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="custom-article-body col-md-12"></div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ cdn_domain }}/highlight.js/10.1.1/highlight.min.js"></script>
+    <script async src="{{ cdn_domain }}/markdown-it/11.0.0/markdown-it.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        $(document).ready(function () {
+            let pat = /\/p\/(\d+)/;
+            let path = window.location.pathname;
+            let result = path.match(pat)
+            if (result !== null) {
+                let postID = result[1];
+                $.ajax({
+                    url: "/articles/" + postID,
+                    type: "GET",
+                    success: function (data) {
+                        if (data.code === 200) {
+                            let md = window.markdownit({
+                                highlight: function (str, lang) {
+                                    if (lang && hljs.getLanguage(lang)) {
+                                        try {
+                                            return hljs.highlight(lang, str).value;
+                                        } catch (__) {
+                                        }
+                                    }
+                                    return ''; // use external default escaping
+                                }
+                            });
+                            let content = md.render(data.data.body)
+                            $(".custom-article-body").empty().append(content);
+                        }
+                    }
+                })
+            }
+        })
+    </script>
+{% endblock %}

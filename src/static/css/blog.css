@@ -104,3 +104,12 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+.custom-article-body img {
+    vertical-align: middle;
+    border-style: none;
+    float: right;
+    height: auto;
+    width: -webkit-fill-available;
+    /* object-fit: initial; */
+}
