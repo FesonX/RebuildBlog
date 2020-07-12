@@ -8,7 +8,7 @@
 @software: PyCharm 
 """
 
-from wtforms import StringField, Form
+from wtforms import StringField, Form, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -19,3 +19,13 @@ class ArticleForm(Form):
     body = StringField(label='body', validators=[DataRequired(message='Article body is required')])
     summary = StringField(label='summary')
     tags = StringField(label='tags')
+
+
+class QueryForm(Form):
+    author = StringField(label='author')
+    title = StringField(label='article')
+    column = StringField(label='column')
+    page = IntegerField(label='page', default=1)
+    per_page = IntegerField(label='per_page', default=20)
+    tags = StringField(label='tags')
+    create_time = IntegerField(label='create_time')
