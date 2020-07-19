@@ -61,6 +61,7 @@ def post_article():
     return jsonify({"msg": "Success", "code": 200})
 
 
+@request_validator(QueryForm)
 def query_article():
     post_id = g.post_id
     if post_id != -1:
@@ -71,7 +72,7 @@ def query_article():
         else:
             abort(404)
     req_form: QueryForm = g.my_form
-    articles = get_articles(page=req_form.page, per_page=req_form.per_page)
+    articles = get_articles(query_conditions=None, page=req_form.page.data, per_page=req_form.per_page.data)
     if articles:
         articles = [row2dict(article) for article in articles]
     return jsonify({'msg': "Success", "data": articles, "code": 200})
