@@ -3,9 +3,10 @@
 {% block content %}
 <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
-        <h1 class="display-4 post-title">Title of a longer featured blog post文章标题</h1>
-        <p class="lead my-3 post-summary">Multiple lines of text that form the lede, informing new readers quickly and
-            efficiently about what’s most interesting in this post’s contents.文章摘要-自动生成</p>
+        <strong class="d-inline-block mb-2 text-muted column-name"></strong>
+        <p class="post-date hidden"></p>
+        <h1 class="display-4 post-title"></h1>
+        <p class="lead my-3 post-summary"></p>
         <p class="lead mb-0"><a href="#" class="text-white font-weight-bold post-link">继续阅读...</a></p>
     </div>
 </div>
@@ -14,11 +15,10 @@
     <div class="col-md-6">
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 text-primary">专栏名称</strong>
-                <h3 class="mb-0 post-title">Post Title 文章标题</h3>
-                <div class="mb-1 text-muted post-date">Nov 12</div>
-                <p class="card-text mb-auto post-summary">This is a wider card with supporting text below as a natural lead-in to
-                    additional content.</p>
+                <strong class="d-inline-block mb-2 text-primary column-name"></strong>
+                <h3 class="mb-0 post-title"></h3>
+                <div class="mb-1 text-muted post-date"></div>
+                <p class="card-text mb-auto post-summary"></p>
                 <a href="#" class="stretched-link post-link">Continue reading</a>
             </div>
             <div class="col-auto d-none d-lg-block">
@@ -34,11 +34,10 @@
     <div class="col-md-6">
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 text-success">专栏名称</strong>
-                <h3 class="mb-0 post-title">Post title 文章标题</h3>
-                <div class="mb-1 text-muted post-date">Nov 11</div>
-                <p class="mb-auto post-summary">This is a wider card with supporting text below as a natural lead-in to
-                    additional content.</p>
+                <strong class="d-inline-block mb-2 text-success column-name"></strong>
+                <h3 class="mb-0 post-title"></h3>
+                <div class="mb-1 text-muted post-date"></div>
+                <p class="mb-auto post-summary"></p>
                 <a href="#" class="stretched-link post-link">Continue reading</a>
             </div>
             <div class="col-auto d-none d-lg-block">
@@ -55,5 +54,6 @@
 {% endblock %}
 
 {% block js %}
+    <script src="/js/index.js?v=20200719"> </script>
 
 {% endblock %}
