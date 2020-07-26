@@ -25,7 +25,7 @@ class QueryForm(Form):
     author = StringField(label='author')
     title = StringField(label='article')
     column = StringField(label='column')
-    page = IntegerField(label='page', default=1)
+    page = IntegerField(label='page', default=0)
     per_page = IntegerField(label='per_page', default=20)
     tags = StringField(label='tags')
     create_time = IntegerField(label='create_time')
