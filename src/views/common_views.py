@@ -35,6 +35,12 @@ def article_page(id):
     return render_template('article_page.html', cdn_domain='https://cdn.staticfile.org', )
 
 
+@app.route('/blog', methods=['GET'])
+@app.route('/search/<string:field>/<string:value>', methods=['GET'])
+def article_list(field=None, value=None):
+    return render_template('article_list.html', cdn_domain='https://cdn.staticfile.org')
+
+
 @app.route('/articles', defaults={'post_id': -1}, methods=['POST', 'GET'])
 @app.route('/articles/<int:post_id>', methods=['POST', 'GET'])
 def article_manage(post_id):
@@ -43,6 +49,18 @@ def article_manage(post_id):
         HttpMethod.GET: query_article,
         HttpMethod.POST: post_article
     })
+
+
+@app.route('/articles/<string:field>/<value>', methods=['GET'])
+@request_validator(QueryForm)
+def get_articles_by_column(field, value):
+    req_form: QueryForm = g.my_form
+    query_fields = {'columns': [Article.section == value, ], 'authors': [Article.username == value], }
+    articles = get_articles(query_conditions=query_fields.get(field, None), page=req_form.page.data,
+                            per_page=req_form.per_page.data)
+    if articles:
+        articles = [row2dict(article) for article in articles.all()]
+    return jsonify({'msg': "Success", "data": articles, "code": 200})
 
 
 @request_validator(ArticleForm)

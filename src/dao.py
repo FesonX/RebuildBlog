@@ -29,9 +29,9 @@ def save_instances(instances: Sequence):
         logger.exception(e)
 
 
-def get_articles(query_conditions, fields=None, page: int = 1, per_page: int = 20):
+def get_articles(query_conditions, fields=None, page: int = 0, per_page: int = 20):
     if fields:
-        fields = [getattr(field) for field in fields]
+        fields = [getattr(Article, field) for field in fields]
     base_query = db.session.query(fields or Article)
     if query_conditions:
         base_query = base_query.filter(*query_conditions)
@@ -40,5 +40,9 @@ def get_articles(query_conditions, fields=None, page: int = 1, per_page: int = 2
 
 def get_article(query_conditions, fields=None):
     if fields:
-        fields = [getattr(field) for field in fields]
+        fields = [getattr(Article, field) for field in fields]
     return db.session.query(fields or Article).filter(*query_conditions).first()
+
+
+def get_columns():
+    return db.session.query(Article.section.distinct()).all()

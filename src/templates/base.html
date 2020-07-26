@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="FesonX">
-    <title>{{ title }}</title>
+    <title>{% block title %}{{ title }} {% endblock %}</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -49,8 +49,8 @@
     <!-- TODO: Get column names from database-->
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-            <a class="p-2 text-muted column-li" href="#">Code&nbsp;代码</a>
-            <a class="p-2 text-muted column-li" href="#">Photograph&nbsp;摄影</a>
+            <a class="p-2 text-muted column-li" href="/search/columns/python">Python</a>
+            <a class="p-2 text-muted column-li" href="/search/columns/摄影">Photograph&nbsp;摄影</a>
             <a class="p-2 text-muted column-li" href="#">Others&nbsp;其他</a>
             <a class="p-2 text-muted column-li" href="#">About&nbsp;关于</a>
         </nav>
@@ -66,10 +66,7 @@
             <div class="p-4">
                 <h4>Archives&nbsp;归档</h4>
                 <ol class="list-unstyled mb-0">
-                    <li><a href="#">March 2014</a></li>
-                    <li><a href="#">February 2014</a></li>
-                    <li><a href="#">January 2014</a></li>
-                    <li><a href="#">More</a></li>
+                    <li><a href="{{ url_for('article_list') }}">文章列表</a></li>
                 </ol>
             </div>
         </aside>
