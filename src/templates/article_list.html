@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+文章列表
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/css/blog_list.css" >
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-muted">Recent Posts</h1>
+                <small class="article-total text-muted"></small>
+            </div>
+
+            <div class="col-md-12 article-list-body">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/js/article_list.js"></script>
+{% endblock %}

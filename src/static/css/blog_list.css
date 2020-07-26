@@ -1,0 +1,7 @@
+.article-card + .article-card {
+    margin-top: 20px;
+}
+
+.article-list-body small {
+    color: gray;
+}
